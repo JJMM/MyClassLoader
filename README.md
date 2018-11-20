@@ -20,10 +20,12 @@ pod "MyClassLoader"
 
 ## 使用介绍
 参照Example工程，实现MyClassLoader的任意Category类方法，在开屏广告、引导页面（系统闪屏后的第一个页面）调用MyClassLoaderInvoker callDefaultClassLoader方法即可
+
 ####调用方式
 ```objective-c
 [MyClassLoaderInvoker callDefaultClassLoader];
 ```
+
 ####实现的类方法
 ```objective-c
 @implementation MyClassLoader(Test0)
@@ -38,19 +40,17 @@ pod "MyClassLoader"
 
 @end
 ```
+
 ####支持特性
--Category类方法任意取名，可以带业务含义
--Category类方法可以重名，但必须实现在不同的Category中才行，如MyClassLoader(Test0)、MyClassLoader(Test1)两个Category都实现了classLoader0方法，都被调用了
--Category类调用的顺序可在编译文件添加的顺序中修改，后添加的先调用，同一Category类中的方法名按照自上而下的顺序调用
-
--MyClassLoader是默认类加载器，支持自定义类型
-
--Swift语言是默认类加载器，支持自定义类型
-
--系统的类方法load和initialize由系统调用，MyClassLoader不会重复调用
+- Category类方法任意取名，可以带业务含义
+- Category类方法可以重名，但必须实现在不同的Category中才行，如MyClassLoader(Test0)、MyClassLoader(Test1)两个Category都实现了classLoader0方法，都被调用了
+- Category类调用的顺序可在编译文件添加的顺序中修改，后添加的先调用，同一Category类中的方法名按照自上而下的顺序调用
+- MyClassLoader是默认类加载器，支持自定义类型
+- Swift语言是默认类加载器，支持自定义类型
+- 系统的类方法load和initialize由系统调用，MyClassLoader不会重复调用
 
 ## 思路以及原理介绍，感兴趣的可以看
-想法是替换+load，实现个可控的自定义的方式调用，大体经过三次尝试摸索
+想法是替换+load，实现个可控的自定义的方式调用，大体经过如下几次尝试摸索
 
 第一次尝试，想到的思路是找下runtime中+load源码，照着源码把+load换个方法，+load源码如下：
 
