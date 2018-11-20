@@ -1,6 +1,7 @@
 # MyClassLoader
-1、+load方法替代工具（解决+load滥用导致启动时间超长问题）<br>
-2、Swift pod工程类似+load方法的调用方式（Swift没有+load，难以实现注册模式）<br>
+- +load方法替代工具（解决+load滥用导致启动时间超长问题）<br>
+- Swift pod工程类似+load方法的调用方式（Swift没有+load，难以实现注册模式）<br>
+- 建议所有+load方法的库，都使用MyClassLoader替换
 
 ## 背景
 Objective-C的+Load方法设计的天然缺陷和开发者的滥用，导致系统启动时间大大增加，原来请参考pre-main过程<br>
